@@ -62,5 +62,5 @@ install: ## Create a development environment (virtualenv).
 ### Run things
 #
 
-dl_google: ## Start the HTTP microservice (development).
+dl_google: ## Download from Google Images. Params: query=<your query>
 	$(PATH_VENV)'/bin/python' -m $(LIBRARY).google "$(query)"
