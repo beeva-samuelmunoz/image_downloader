@@ -5,6 +5,7 @@ import json
 import time
 
 from selenium import webdriver
+#Doc: https://seleniumhq.github.io/selenium/docs/api/py/api.html
 
 from .img_downloader import ImgDownloader
 from . import utils
@@ -16,7 +17,12 @@ class Google(ImgDownloader):
     URL = 'https://www.google.com/search?q="{}"&source=lnms&tbm=isch'
 
     def _get_links(self, query):
-        driver = webdriver.Firefox(executable_path=self.PATH_DRIVER)
+        options = webdriver.firefox.options.Options()
+        options.headless = True
+        driver = webdriver.Firefox(
+            executable_path=self.PATH_DRIVER,
+            options=options
+        )
         driver.get(self.URL.format(query))
         # Load the complete page
         def exhaust_autoscroll(driver, n_times, wait_seconds):
